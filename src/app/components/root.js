@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
+import Header from './header/header';
+import Sidebar from './sidebar/sidebar';
 
 import './root.scss';
 
 export default class Root extends Component {
-    constructor() {
-        super();
-        console.log('test');
-    }
-
     render() {
         return (
             <div id="root">
-
+                <Header />
+                <Sidebar />
             </div>
         )
     }
