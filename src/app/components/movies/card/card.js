@@ -5,7 +5,7 @@ import './card.scss';
 export default class Card extends Component {
     render() {
         return (
-            <article className="card">
+            <article className="card" style={{width: this.props.width}}>
                 <img
                     src="http://ia.media-imdb.com/images/M/MV5BMTU0ODk1MTIxM15BMl5BanBnXkFtZTgwNTk3MTc5ODE@._V1_SX300.jpg"/>
                 <div className="card-data">
