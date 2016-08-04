@@ -26,7 +26,13 @@ var config = {
             {
                 test: /\.scss$/,
                 loaders: ["style", "css", "sass"]
-            }
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?(\?\d+)?$/,
+                loader: "file-loader"
+            },
+            {test: /\.(ttf|eot|jpg|svg)(\?v=[0-9]\.[0-9]\.[0-9])?(\?\d+)?$/, loader: "file-loader"},
+            {test: /\.png$/, loader: "url-loader?limit=100000"},
         ]
     }
 };

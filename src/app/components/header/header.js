@@ -9,6 +9,7 @@ export default class Header extends Component {
                 <h1 className="title">
                     movieCollection
                 </h1>
+                <img src={require('../../../../public/images/logo.png')} />
                 <div className="account">
                     <p>Sign in</p>
                 </div>
