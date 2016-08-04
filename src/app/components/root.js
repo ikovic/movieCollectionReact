@@ -8,7 +8,10 @@ export default class Root extends Component {
 
     render() {
         return (
-            <h1>Veliki test</h1>
-        );
+            <div>
+                <h1>Veliki test</h1>
+                <p>Test testova svakakvih</p>
+            </div>
+        )
     }
-}
+};

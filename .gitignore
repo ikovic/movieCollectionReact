@@ -9,7 +9,7 @@ coverage/
 mit-cre.iml
 
 # distribution folder
-public/
+public/dist/*
 
 # OS generated stuff
 .DS_Store
