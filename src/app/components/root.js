@@ -11,8 +11,7 @@ export default class Root extends Component {
     render() {
         return (
             <div id="root">
-                <h1>Veliki test</h1>
-                <p>Test testova svakakvih</p>
+
             </div>
         )
     }
