@@ -1,33 +1,55 @@
 .card {
   position: relative;
   width: 192px;
-  border: 1px solid gray;
+  border: 1px solid black;
   height: 300px;
   float: left;
-
-  &:hover {
-    img {
-      opacity: .5;
-    }
-
-    .card-data {
-      display: block;
-    }
-  }
 
   img {
     max-width: 100%;
     max-height: 100%;
   }
 
+  &:hover {
+    .card-data {
+      display: block;
+    }
+  }
+
   .card-data {
     display: none;
-    position: absolute;
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+    width: 100%;
+    opacity: .9;
     text-align: center;
+    text-transform: uppercase;
+    color: #000;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.09);
+    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    text-transform: uppercase;
-    color: black;
+
+    .title {
+      position: absolute;
+      left: 50%;
+      top: 25%;
+      transform: translate(-50%, -50%);
+    }
+
+    .year {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .rating {
+      position: absolute;
+      left: 50%;
+      top: 75%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
