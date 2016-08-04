@@ -41,7 +41,7 @@ export default class Movies extends Component {
 
     getCards() {
         var cards = [];
-        for (var i = 0; i < 24; i++) {
+        for (var i = 0; i < 128; i++) {
             cards.push(<Card width={this.state.width} key={i}/>);
         }
         return cards;

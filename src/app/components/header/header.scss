@@ -8,8 +8,11 @@
   z-index: 5;
   box-shadow: 0 7px 25px 10px rgba(0, 0, 0, 1);
 
-  h1.title {
+  img.logo {
     float: left;
+    position: relative;
+    bottom: 60px;
+    left: 60px;
   }
 
   div.account {
