@@ -5,20 +5,33 @@
   height: calc(100% - 80px);
   width: 230px;
   z-index: 4;
-  background-color: black;
+  background-color: rgba(24, 25, 28, .5);
   color: white;
   padding: 10px;
 
+  h4 {
+    text-transform: uppercase;
+  }
+
   ul {
     list-style-type: none;
+    padding-left: 2px;
 
     li {
       opacity: .7;
       margin: 4px;
+      padding: 10px 0;
 
       &:hover {
         opacity: 1;
         cursor: pointer;
+      }
+
+      &.selected {
+        background-color: cornflowerblue;
+        margin: 0 -10px;
+        padding-left: 14px;
+        opacity: 1;
       }
     }
   }
