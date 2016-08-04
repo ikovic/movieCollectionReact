@@ -6,7 +6,14 @@ export default class Sidebar extends Component {
     render() {
         return (
             <aside id="sidebar">
-
+                <ul>
+                    <li>Random Link</li>
+                    <li>Random Link</li>
+                    <li>Random Link</li>
+                    <li>Random Link</li>
+                    <li>Random Link</li>
+                    <li>Random Link</li>
+                </ul>
             </aside>
         )
     }
