@@ -1,0 +1,20 @@
+# deps
+node_modules/
+web_modules/
+coverage/
+
+# editors
+*.sublime-*
+.idea/
+mit-cre.iml
+
+# distribution folder
+public/dist/*
+!public/dist/.gitkeep
+
+# OS generated stuff
+.DS_Store
+.DS_Store?
+
+npm-debug.log
+/src/coverage/
