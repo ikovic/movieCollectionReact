@@ -3,9 +3,23 @@
   left: 0;
   top: 80px;
   height: calc(100% - 80px);
-  width: 280px;
+  width: 230px;
   z-index: 4;
   background-color: black;
   color: white;
   padding: 10px;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      opacity: .7;
+      margin: 4px;
+
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
 }
