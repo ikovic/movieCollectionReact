@@ -2,10 +2,12 @@ import appDispatcher from '../dispatcher/appDispatcher';
 import sessionConstants from '../constants/sessionConstants';
 
 class SessionActions {
-    signInUser() {
+    signInUser(data) {
         appDispatcher.handleAction({
             actionType: sessionConstants.SIGN_IN_USER,
-            data: null
+            data: {
+                user: data
+            }
         });
     }
 
