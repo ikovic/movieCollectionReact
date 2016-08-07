@@ -23,6 +23,14 @@ class SessionStore extends EventEmitter {
         }
     }
 
+    getAccessToken() {
+        if (this.user) {
+            return this.user.getAuthResponse().access_token;
+        } else {
+            return null;
+        }
+    }
+
     signInUser(data) {
         this.user = data.user;
     }
