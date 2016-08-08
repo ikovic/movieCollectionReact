@@ -2,9 +2,16 @@ import appDispatcher from '../dispatcher/appDispatcher';
 import modalConstants from '../constants/modalConstants';
 
 class ModalActions {
-    addMovie() {
+    openAddMovieDialog() {
         appDispatcher.handleAction({
-            actionType: modalConstants.ADD_MOVIE,
+            actionType: modalConstants.OPEN_ADD_MOVIE_DIALOG,
+            data: null
+        });
+    }
+
+    closeAddMovieDialog() {
+        appDispatcher.handleAction({
+            actionType: modalConstants.CLOSE_ADD_MOVIE_DIALOG,
             data: null
         });
     }

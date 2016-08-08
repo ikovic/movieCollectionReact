@@ -11,6 +11,7 @@ export default class Movies extends Component {
 
         this.updateDimensions = this.updateDimensions.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.getMessageForNoMovies = this.getMessageForNoMovies.bind(this);
 
         this.state = {
             width: 192,
@@ -57,17 +58,30 @@ export default class Movies extends Component {
     componentDidMount() {
         this.updateDimensions();
         window.addEventListener("resize", this.updateDimensions);
+        collectionStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
+        collectionStore.removeChangeListener(this.onChange);
+    }
+
+    getMessageForNoMovies() {
+        if (collectionStore.getCurrentCollection()) {
+            if (!this.state.movies.length) {
+                return 'No movies in this collection';
+            }
+        } else {
+            return 'Please select a collection on the left side';
+        }
     }
 
     render() {
         var cards = this.getCards();
+
         return (
             <section ref="cardsContainer" id="movies">
-                {cards.length ? cards : <h1 className="empty-collection">No movies in this collection</h1>}
+                {cards.length ? cards : <h1 className="empty-collection">{this.getMessageForNoMovies()}</h1>}
             </section>
         )
     }

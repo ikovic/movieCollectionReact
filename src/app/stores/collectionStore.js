@@ -32,7 +32,7 @@ class CollectionStore extends EventEmitter {
     loadCollections(collections) {
         this.collections = collections;
         this.currentCollection = null;
-        this.movies = null;
+        this.movies = [];
     }
 
     selectCollection(data) {

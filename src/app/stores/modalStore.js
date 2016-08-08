@@ -17,8 +17,12 @@ class ModalStore extends EventEmitter {
         return this.addMovieDialog;
     }
 
-    showMovieDialog() {
+    showAddMovieDialog() {
         this.addMovieDialog.isOpen = true;
+    }
+
+    hideAddMovieDialog() {
+        this.addMovieDialog.isOpen = false;
     }
 
     // Emit Change event
@@ -48,8 +52,13 @@ appDispatcher.register(function (payload) {
 
     switch (action.actionType) {
 
-        case modalConstants.ADD_MOVIE: {
-            modalStore.showMovieDialog();
+        case modalConstants.OPEN_ADD_MOVIE_DIALOG: {
+            modalStore.showAddMovieDialog();
+            break;
+        }
+
+        case modalConstants.CLOSE_ADD_MOVIE_DIALOG: {
+            modalStore.hideAddMovieDialog();
             break;
         }
 

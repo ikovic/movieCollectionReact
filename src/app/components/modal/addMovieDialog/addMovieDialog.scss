@@ -1,0 +1,83 @@
+#addMovieDialogWrapper {
+  #overlayModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+    opacity: 0;
+    display: none;
+
+    &.visible {
+      opacity: .5;
+      display: block;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+
+    .modal-dialog {
+      position: relative;
+      width: auto;
+      margin: 60px auto;
+
+      .modal-content {
+        margin: 0 auto;
+        min-width: 230px;
+        max-width: 540px;
+      }
+    }
+  }
+
+  .modal-header {
+    padding: 10px 5px;
+    position: relative;
+    min-height: 45px;
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .icon-remove {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 5px;
+      color: #fff;
+      cursor: pointer;
+
+      &:before {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .modal-body {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .modal-footer {
+    background: #fff;
+    text-align: right;
+    padding-top: 5px;
+    border-top: 1px solid black;
+
+    .btn {
+      margin: .5em;
+    }
+  }
+}
