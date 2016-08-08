@@ -1,5 +1,5 @@
 const collectionConstants = {
-    LOAD_COLLECTION: 'LOAD_COLLECTION'
+    LOAD_COLLECTIONS: 'LOAD_COLLECTIONS'
 };
 
 export default collectionConstants;

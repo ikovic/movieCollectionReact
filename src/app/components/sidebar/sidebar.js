@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import collectionStore from '../../stores/collectionStore';
+import Collection from './collection/collection';
 
 import './sidebar.scss';
 
@@ -9,10 +10,11 @@ export default class Sidebar extends Component {
         super();
 
         this.onChange = this.onChange.bind(this);
+        this.getCollections = this.getCollections.bind(this);
 
         this.state = {
-            collections: [],
-            currentCollection: null
+            collections: collectionStore.getCollections(),
+            currentCollection: collectionStore.getCurrentCollection()
         }
     }
 
@@ -26,22 +28,28 @@ export default class Sidebar extends Component {
 
     componentDidMount() {
         collectionStore.addChangeListener(this.onChange);
+
     }
 
     componentWillUnmount() {
         collectionStore.removeChangeListener(this.onChange);
     }
 
+    getCollections() {
+        var collections = [];
+        for (let collection of this.state.collections) {
+            collections.push(<Collection collection={collection}
+                                         key={collection._id}
+                                         isSelected={this.state.currentCollection && collection._id === this.state.currentCollection._id}/>)
+        }
+        return collections;
+    }
+
     render() {
         return (
             <aside id="sidebar">
                 <ul>
-                    <li>Random Link</li>
-                    <li>Random Link</li>
-                    <li>Random Link</li>
-                    <li className="selected">Random Link</li>
-                    <li>Random Link</li>
-                    <li>Random Link</li>
+                    {this.getCollections()}
                 </ul>
             </aside>
         )

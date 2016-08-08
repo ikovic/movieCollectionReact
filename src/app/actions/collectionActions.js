@@ -8,10 +8,13 @@ class CollectionActions {
 
     }
 
-    showCollections() {
+    loadCollections() {
         var ajax = new Ajax('/api/collection',
             (res) => {
-                console.dir(res);
+                appDispatcher.handleAction({
+                    actionType: collectionConstants.LOAD_COLLECTIONS,
+                    data: res
+                });
             },
             (status, res) => {
                 console.dir(res);

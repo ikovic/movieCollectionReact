@@ -24,6 +24,11 @@ class CollectionStore extends EventEmitter {
         return this.collections;
     }
 
+    loadCollections(collections) {
+        this.collections = collections;
+        this.currentCollection = -1;
+    }
+
     // Emit Change event
     emitChange() {
         this.emit('change');
@@ -51,12 +56,8 @@ appDispatcher.register(function (payload) {
 
     switch (action.actionType) {
 
-        case collectionConstants.SIGN_IN_USER: {
-            collectionStore.signInUser(action.data);
-            break;
-        }
-        case collectionConstants.SIGN_OUT_USER: {
-            collectionStore.signOutUser();
+        case collectionConstants.LOAD_COLLECTIONS: {
+            collectionStore.loadCollections(action.data);
             break;
         }
 
