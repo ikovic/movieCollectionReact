@@ -36,7 +36,7 @@ class SessionStore extends EventEmitter {
     }
 
     signOutUser() {
-        alert('sign out');
+        this.user = null;
     }
 
     // Emit Change event

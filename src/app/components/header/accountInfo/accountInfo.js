@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import sessionStore from '../../../stores/sessionStore';
-import Ajax from '../../../utility/ajax';
+import sessionActions from '../../../actions/sessionActions';
 
 import './accountInfo.scss';
 
@@ -10,11 +9,14 @@ export default class AccountInfo extends Component {
 
     }
 
+
     render() {
         var userInfo = this.props.user.getBasicProfile();
         return (
             <div id="accountInfo">
-                <p>{userInfo.getName()}</p>
+                <span>{userInfo.getName()}</span>
+                <span onClick={() => sessionActions.signOutUser()}>Sign out</span>
+
             </div>)
     }
 }

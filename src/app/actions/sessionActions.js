@@ -21,9 +21,21 @@ class SessionActions {
     }
 
     signOutUser() {
-        appDispatcher.handleAction({
-            actionType: sessionConstants.SIGN_OUT_USER,
-            data: null
+        // first use google API to sign out
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            // then sign out of server session
+            var ajax = new Ajax('/auth/logout',
+                (res) => {
+                    // then update the sessionStore
+                    appDispatcher.handleAction({
+                        actionType: sessionConstants.SIGN_OUT_USER,
+                        data: null
+                    });
+                },
+                (status, res) => console.dir(res)
+            );
+            ajax.get();
         });
     }
 }
