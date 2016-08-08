@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import modalStore from '../../../stores/modalStore';
 import modalActions from '../../../actions/modalActions';
+import collectionActions from '../../../actions/collectionActions';
 
 import Details from '../../movies/details/details';
 
@@ -138,10 +139,10 @@ class AddMovieDialog extends Component {
                                     <div className="confirm-controls">
                                         <span className="btn btn-cancel"
                                               onClick={() => modalActions.closeAddMovieDialog()}>
-                                          Bad
+                                          Cancel
                                         </span>
-                                        <span className="btn btn-primary" onClick={() => console.log('good')}>
-                                          Good
+                                        <span className="btn btn-primary" onClick={() => collectionActions.addMovie(this.state.movie)}>
+                                          Add
                                         </span>
                                     </div>
                                 </div>

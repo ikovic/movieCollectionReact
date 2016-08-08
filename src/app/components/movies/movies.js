@@ -43,6 +43,7 @@ export default class Movies extends Component {
 
     getCards() {
         var cards = [];
+        console.dir(this.state.movies);
         this.state.movies.forEach((movie) => {
             cards.push(<Card movie={movie} width={this.state.width} key={movie._id}/>);
         });

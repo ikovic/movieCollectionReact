@@ -77,8 +77,8 @@
         font-size: 14px;
         text-transform: capitalize;
 
-        &.text-bold {
-          font-weight: bold;
+        &:hover {
+          cursor: pointer;
         }
       }
     }

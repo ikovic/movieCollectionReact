@@ -40,6 +40,10 @@ class CollectionStore extends EventEmitter {
         this.movies = data.movies;
     }
 
+    addMovieToCollection() {
+        this.currentCollection = data;
+    }
+
     // Emit Change event
     emitChange() {
         this.emit('change');
@@ -74,6 +78,11 @@ appDispatcher.register(function (payload) {
 
         case collectionConstants.SELECT_COLLECTION: {
             collectionStore.selectCollection(action.data);
+            break;
+        }
+
+        case collectionConstants.ADD_MOVIE: {
+            collectionStore.addMovieToCollection(action.data);
             break;
         }
 
