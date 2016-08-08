@@ -8,13 +8,14 @@ class CollectionStore extends EventEmitter {
     constructor() {
         super();
 
-        this.currentCollection = -1;
+        this.currentCollection = null;
+        this.movies = [];
         this.collections = [];
     }
 
     getCurrentCollection() {
-        if (this.currentCollection > -1 && this.currentCollection < this.collections.length) {
-            return this.collections[this.currentCollection];
+        if (this.currentCollection) {
+            return this.collections.find((item) => {return item._id == this.currentCollection._id});
         } else {
             return null;
         }
@@ -24,9 +25,19 @@ class CollectionStore extends EventEmitter {
         return this.collections;
     }
 
+    getMovies() {
+        return this.movies;
+    }
+
     loadCollections(collections) {
         this.collections = collections;
-        this.currentCollection = -1;
+        this.currentCollection = null;
+        this.movies = null;
+    }
+
+    selectCollection(data) {
+        this.currentCollection = data.collection;
+        this.movies = data.movies;
     }
 
     // Emit Change event
@@ -58,6 +69,11 @@ appDispatcher.register(function (payload) {
 
         case collectionConstants.LOAD_COLLECTIONS: {
             collectionStore.loadCollections(action.data);
+            break;
+        }
+
+        case collectionConstants.SELECT_COLLECTION: {
+            collectionStore.selectCollection(action.data);
             break;
         }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Card from './card/card';
+import collectionStore from '../../stores/collectionStore';
 
 import './movies.scss';
 
@@ -9,9 +10,11 @@ export default class Movies extends Component {
         super();
 
         this.updateDimensions = this.updateDimensions.bind(this);
+        this.onChange = this.onChange.bind(this);
 
         this.state = {
-            width: 192
+            width: 192,
+            movies: []
         }
     }
 
@@ -39,10 +42,16 @@ export default class Movies extends Component {
 
     getCards() {
         var cards = [];
-        for (var i = 0; i < 128; i++) {
-            cards.push(<Card width={this.state.width} key={i}/>);
-        }
+        this.state.movies.forEach((movie) => {
+            cards.push(<Card movie={movie} width={this.state.width} key={movie._id}/>);
+        });
         return cards;
+    }
+
+    onChange() {
+        this.setState({
+            movies: collectionStore.getMovies()
+        })
     }
 
     componentDidMount() {
@@ -55,11 +64,10 @@ export default class Movies extends Component {
     }
 
     render() {
+        var cards = this.getCards();
         return (
             <section ref="cardsContainer" id="movies">
-                <div className="cardsContainer">
-                    {this.getCards()}
-                </div>
+                {cards.length ? cards : <h1 className="empty-collection">No movies in this collection</h1>}
             </section>
         )
     }
