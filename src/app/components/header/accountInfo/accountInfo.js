@@ -5,10 +5,6 @@ import './accountInfo.scss';
 
 export default class AccountInfo extends Component {
 
-    componentDidMount() {
-
-    }
-
     render() {
         var userInfo = this.props.user.getBasicProfile();
         return (

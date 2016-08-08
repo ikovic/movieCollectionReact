@@ -1,3 +1,5 @@
-/**
- * Created by Ivan on 5.8.2016..
- */
+const collectionConstants = {
+    LOAD_COLLECTION: 'LOAD_COLLECTION'
+};
+
+export default collectionConstants;

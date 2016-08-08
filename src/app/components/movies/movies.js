@@ -32,8 +32,6 @@ export default class Movies extends Component {
 
         var cardWidth = (containerWidth / numberOfCardsInRow) - 2;
 
-        //console.log('card width', cardWidth, 'container width', containerWidth, 'cards in row', numberOfCardsInRow);
-
         this.setState({
             width: cardWidth
         });
