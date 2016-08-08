@@ -54,6 +54,13 @@ class AddMovieDialog extends Component {
     componentWillUnmount() {
         modalStore.removeChangeListener(this._onChange);
         document.removeEventListener('keyup', this._handleKeyPress, false);
+        if (this.autocompleteTimeout) {
+            clearTimeout(this.autocompleteTimeout);
+        }
+    }
+
+    _getSuggestions(value) {
+        console.log('suggest', value);
     }
 
     _onInputChange(event) {
@@ -66,6 +73,11 @@ class AddMovieDialog extends Component {
                 imdbId: imdbId
             });
         } else if (event.target.id === 'imdbTitle') {
+            if (this.autocompleteTimeout) {
+                clearTimeout(this.autocompleteTimeout);
+            }
+            this.autocompleteTimeout = setTimeout(() => this._getSuggestions(this.state.imdbTitle), 500);
+
             this.setState({
                 imdbTitle: event.target.value
             });
