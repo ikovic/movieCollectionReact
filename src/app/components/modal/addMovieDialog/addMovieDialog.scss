@@ -55,6 +55,33 @@
     background: #fff;
     padding: 15px;
     text-align: center;
+
+    .autocomplete {
+      text-align: left;
+      float: left;
+      position: absolute;
+      width: 250px;
+      margin-top: 1em;
+      background-color: #fff;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      z-index: 100;
+      list-style-type: none;
+
+      li {
+        display: block;
+        margin: 10px;
+        padding: 5px 0 !important;
+        text-align: left;
+        color: #333;
+        font-size: 14px;
+        text-transform: capitalize;
+
+        &.text-bold {
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   .modal-footer {

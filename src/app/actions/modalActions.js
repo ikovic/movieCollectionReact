@@ -31,6 +31,28 @@ class ModalActions {
         );
         ajax.post({imdbId: imdbId});
     }
+
+    getAutocomplete(title) {
+        var ajax = new Ajax('/api/movie?title=' + title,
+            (res) => {
+                appDispatcher.handleAction({
+                    actionType: modalConstants.GET_AUTOCOMPLETE,
+                    data: res
+                });
+            },
+            (status, res) => {
+                console.dir(res);
+            }
+        );
+        ajax.get();
+    }
+
+    closeAutocomplete() {
+        appDispatcher.handleAction({
+            actionType: modalConstants.CLOSE_AUTOCOMPLETE,
+            data: null
+        });
+    }
 }
 
 var modalActions = new ModalActions();

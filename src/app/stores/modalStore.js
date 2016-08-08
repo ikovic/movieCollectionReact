@@ -8,6 +8,8 @@ class ModalStore extends EventEmitter {
     constructor() {
         super();
 
+        this.autocomplete = [];
+
         this.addMovieDialog = {
             isOpen: false,
             movie: null
@@ -37,6 +39,18 @@ class ModalStore extends EventEmitter {
             isOpen: true,
             movie: movie
         };
+    }
+
+    setAutocompleteData(data) {
+        if (data.Search) {
+            this.autocomplete = data.Search;
+        } else {
+            this.autocomplete = [];
+        }
+    }
+
+    getAutocompleteData() {
+        return this.autocomplete;
     }
 
     // Emit Change event
@@ -78,6 +92,16 @@ appDispatcher.register(function (payload) {
 
         case modalConstants.SHOW_ORDER_DETAILS: {
             modalStore.showOrderDetails(action.data);
+            break;
+        }
+
+        case modalConstants.GET_AUTOCOMPLETE: {
+            modalStore.setAutocompleteData(action.data);
+            break;
+        }
+
+        case modalConstants.CLOSE_AUTOCOMPLETE: {
+            modalStore.setAutocompleteData([]);
             break;
         }
 

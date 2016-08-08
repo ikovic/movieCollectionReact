@@ -14,13 +14,15 @@ class AddMovieDialog extends Component {
 
         this._onChange = this._onChange.bind(this);
         this._onInputChange = this._onInputChange.bind(this);
+        this._getAutocompleteValues = this._getAutocompleteValues.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
 
         this.state = {
             isOpen: false,
             imdbId: '',
             imdbTitle: '',
-            movie: null
+            movie: null,
+            autocomplete: []
         };
 
         this.imdbIdRegex = /tt\d{7}/;
@@ -28,9 +30,11 @@ class AddMovieDialog extends Component {
 
     _onChange() {
         var modalData = modalStore.getAddMovieDialogData();
+        var autocomplete = modalStore.getAutocompleteData();
         this.setState({
             isOpen: modalData.isOpen,
-            movie: modalData.movie
+            movie: modalData.movie,
+            autocomplete: autocomplete
         });
     }
 
@@ -60,7 +64,18 @@ class AddMovieDialog extends Component {
     }
 
     _getSuggestions(value) {
-        console.log('suggest', value);
+        modalActions.getAutocomplete(value);
+    }
+
+    _getAutocompleteValues() {
+        return this.state.autocomplete.map((item) => {
+            return (<li key={item.imdbID} onClick={() => this._onAutocompleteSelect(item)}>{item.Title}</li>)
+        });
+    }
+
+    _onAutocompleteSelect(value) {
+        modalActions.closeAutocomplete();
+        modalActions.createMovieOrder(value.imdbID);
     }
 
     _onInputChange(event) {
@@ -96,9 +111,18 @@ class AddMovieDialog extends Component {
                                     <span className="title">Add a Movie</span>
                                 </div>
                                 <div className="modal-body">
-                                    <label htmlFor="imdbTitle">Title</label>
-                                    <input type="text" value={this.state.imdbTitle} id="imdbTitle"
-                                           onChange={(event) => this._onInputChange(event)}/>
+                                    <span>
+                                        <label htmlFor="imdbTitle">Title</label>
+                                        <input type="text" value={this.state.imdbTitle} id="imdbTitle"
+                                               onChange={(event) => this._onInputChange(event)}/>
+                                        {this.state.autocomplete.length ?
+                                            <ul className="autocomplete">
+                                                {this._getAutocompleteValues()}
+                                            </ul>
+                                            :
+                                            null
+                                        }
+                                    </span>
 
                                     <label htmlFor="imdbId">IMDb ID</label>
                                     <input type="text" value={this.state.imdbId} id="imdbId"
