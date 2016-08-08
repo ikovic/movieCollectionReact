@@ -27,7 +27,11 @@ class AddMovieDialog extends Component {
     }
 
     _onChange() {
-        this.setState(modalStore.getAddMovieDialogData());
+        var modalData = modalStore.getAddMovieDialogData();
+        this.setState({
+            isOpen: modalData.isOpen,
+            movie: modalData.movie
+        });
     }
 
     _handleKeyPress(event) {
