@@ -77,7 +77,7 @@ class AddMovieDialog extends Component {
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    Tu je Header
+                                    <span className="title">Add a Movie</span>
                                 </div>
                                 <div className="modal-body">
                                     <label htmlFor="imdbTitle">Title</label>
