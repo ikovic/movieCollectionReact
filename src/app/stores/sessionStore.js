@@ -7,11 +7,32 @@ class SessionStore extends EventEmitter {
 
     constructor() {
         super();
+
+        this.user = null;
     }
 
+    getActiveUser() {
+        return this.user;
+    }
 
-    signInUser() {
-        alert('sign in');
+    getIdToken() {
+        if (this.user) {
+            return this.user.getAuthResponse().id_token;
+        } else {
+            return null;
+        }
+    }
+
+    getAccessToken() {
+        if (this.user) {
+            return this.user.getAuthResponse().access_token;
+        } else {
+            return null;
+        }
+    }
+
+    signInUser(data) {
+        this.user = data.user;
     }
 
     signOutUser() {
@@ -46,7 +67,7 @@ appDispatcher.register(function (payload) {
     switch (action.actionType) {
 
         case sessionConstants.SIGN_IN_USER: {
-            sessionStore.signInUser();
+            sessionStore.signInUser(action.data);
             break;
         }
         case sessionConstants.SIGN_OUT_USER: {
