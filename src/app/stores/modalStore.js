@@ -11,7 +11,8 @@ class ModalStore extends EventEmitter {
         this.addMovieDialog = {
             isOpen: false,
             imdbId: '',
-            imdbTitle: ''
+            imdbTitle: '',
+            movie: null
         };
     }
 
@@ -23,7 +24,8 @@ class ModalStore extends EventEmitter {
         this.addMovieDialog = {
             isOpen: true,
             imdbId: '',
-            imdbTitle: ''
+            imdbTitle: '',
+            movie: null
         }
     }
 
@@ -31,8 +33,13 @@ class ModalStore extends EventEmitter {
         this.addMovieDialog = {
             isOpen: false,
             imdbId: '',
-            imdbTitle: ''
+            imdbTitle: '',
+            movie: null
         }
+    }
+
+    showOrderDetails(movie) {
+        this.addMovieDialog.movie = movie;
     }
 
     // Emit Change event
@@ -69,6 +76,11 @@ appDispatcher.register(function (payload) {
 
         case modalConstants.CLOSE_ADD_MOVIE_DIALOG: {
             modalStore.hideAddMovieDialog();
+            break;
+        }
+
+        case modalConstants.SHOW_ORDER_DETAILS: {
+            modalStore.showOrderDetails(action.data);
             break;
         }
 

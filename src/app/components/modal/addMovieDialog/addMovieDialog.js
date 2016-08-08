@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 
 import modalStore from '../../../stores/modalStore';
 import modalActions from '../../../actions/modalActions';
-import collectionActions from '../../../actions/collectionActions';
+
+import Details from '../../movies/details/details';
 
 import './addMovieDialog.scss';
 
@@ -18,7 +19,8 @@ class AddMovieDialog extends Component {
         this.state = {
             isOpen: false,
             imdbId: '',
-            imdbTitle: ''
+            imdbTitle: '',
+            movie: null
         };
 
         this.imdbIdRegex = /tt\d{7}/;
@@ -54,7 +56,7 @@ class AddMovieDialog extends Component {
         if (event.target.id === 'imdbId') {
             let imdbId = event.target.value;
             if (this.imdbIdRegex.test(imdbId)) {
-                collectionActions.createMovieOrder(imdbId);
+                modalActions.createMovieOrder(imdbId);
             }
             this.setState({
                 imdbId: imdbId
@@ -85,6 +87,8 @@ class AddMovieDialog extends Component {
                                     <label htmlFor="imdbId">IMDb ID</label>
                                     <input type="text" value={this.state.imdbId} id="imdbId"
                                            onChange={(event) => this._onInputChange(event)}/>
+
+                                    {this.state.movie ? <Details movie={this.state.movie}/> : null}
                                 </div>
                                 <div className="modal-footer">
                                     <div className="confirm-controls">
