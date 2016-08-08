@@ -11,7 +11,7 @@ class SessionActions {
                 appDispatcher.handleAction({
                     actionType: sessionConstants.SIGN_IN_USER,
                     data: {
-                        user: data
+                        user: res
                     }
                 });
             },
