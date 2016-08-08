@@ -7,13 +7,7 @@ import './accountInfo.scss';
 export default class AccountInfo extends Component {
 
     componentDidMount() {
-        let token = sessionStore.getAccessToken();
-        var ajax = new Ajax('/api/movie',
-            (res) => console.dir(res),
-            (status, res) => console.dir(res),
-            token
-        );
-        ajax.get();
+
     }
 
     render() {
