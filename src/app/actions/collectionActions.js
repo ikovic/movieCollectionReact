@@ -24,7 +24,13 @@ class CollectionActions {
             });
             let ajax = new Ajax(url,
                 (res) => {
-                    console.dir(res);
+                    appDispatcher.handleAction({
+                        actionType: collectionConstants.SELECT_COLLECTION,
+                        data: {
+                            collection: collection,
+                            movies: res
+                        }
+                    });
                 },
                 (status, res) => {
                     console.dir(res);
