@@ -53,6 +53,18 @@ class CollectionActions {
         );
         ajax.get();
     }
+
+    createMovieOrder(imdbId) {
+        var ajax = new Ajax('/api/movieOrder',
+            (res) => {
+                console.dir(res);
+            },
+            (status, res) => {
+                console.dir(res);
+            }
+        );
+        ajax.post({imdbId: imdbId});
+    }
 }
 
 var collectionActions = new CollectionActions();

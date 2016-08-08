@@ -49,19 +49,6 @@
       margin: 0;
       text-transform: uppercase;
     }
-
-    .icon-remove {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 5px;
-      color: #fff;
-      cursor: pointer;
-
-      &:before {
-        font-weight: 700;
-      }
-    }
   }
 
   .modal-body {

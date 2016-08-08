@@ -9,7 +9,9 @@ class ModalStore extends EventEmitter {
         super();
 
         this.addMovieDialog = {
-            isOpen: false
+            isOpen: false,
+            imdbId: '',
+            imdbTitle: ''
         };
     }
 
@@ -18,11 +20,19 @@ class ModalStore extends EventEmitter {
     }
 
     showAddMovieDialog() {
-        this.addMovieDialog.isOpen = true;
+        this.addMovieDialog = {
+            isOpen: true,
+            imdbId: '',
+            imdbTitle: ''
+        }
     }
 
     hideAddMovieDialog() {
-        this.addMovieDialog.isOpen = false;
+        this.addMovieDialog = {
+            isOpen: false,
+            imdbId: '',
+            imdbTitle: ''
+        }
     }
 
     // Emit Change event

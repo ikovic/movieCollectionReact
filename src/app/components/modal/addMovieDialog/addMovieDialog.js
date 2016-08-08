@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import modalStore from '../../../stores/modalStore';
 import modalActions from '../../../actions/modalActions';
+import collectionActions from '../../../actions/collectionActions';
 
 import './addMovieDialog.scss';
 
@@ -11,11 +12,16 @@ class AddMovieDialog extends Component {
         super();
 
         this._onChange = this._onChange.bind(this);
+        this._onInputChange = this._onInputChange.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
+            imdbId: '',
+            imdbTitle: ''
         };
+
+        this.imdbIdRegex = /tt\d{7}/;
     }
 
     _onChange() {
@@ -44,6 +50,22 @@ class AddMovieDialog extends Component {
         document.removeEventListener('keyup', this._handleKeyPress, false);
     }
 
+    _onInputChange(event) {
+        if (event.target.id === 'imdbId') {
+            let imdbId = event.target.value;
+            if (this.imdbIdRegex.test(imdbId)) {
+                collectionActions.createMovieOrder(imdbId);
+            }
+            this.setState({
+                imdbId: imdbId
+            });
+        } else if (event.target.id === 'imdbTitle') {
+            this.setState({
+                imdbTitle: event.target.value
+            });
+        }
+    }
+
     render() {
         if (this.state.isOpen) {
             return (
@@ -56,16 +78,23 @@ class AddMovieDialog extends Component {
                                     Tu je Header
                                 </div>
                                 <div className="modal-body">
-                                    Tu je Body
+                                    <label htmlFor="imdbTitle">Title</label>
+                                    <input type="text" value={this.state.imdbTitle} id="imdbTitle"
+                                           onChange={(event) => this._onInputChange(event)}/>
+
+                                    <label htmlFor="imdbId">IMDb ID</label>
+                                    <input type="text" value={this.state.imdbId} id="imdbId"
+                                           onChange={(event) => this._onInputChange(event)}/>
                                 </div>
                                 <div className="modal-footer">
                                     <div className="confirm-controls">
-                    <span className="btn btn-cancel" onClick={() => modalActions.closeAddMovieDialog()}>
-                      Bad
-                    </span>
+                                        <span className="btn btn-cancel"
+                                              onClick={() => modalActions.closeAddMovieDialog()}>
+                                          Bad
+                                        </span>
                                         <span className="btn btn-primary" onClick={() => console.log('good')}>
-                      Good
-                    </span>
+                                          Good
+                                        </span>
                                     </div>
                                 </div>
                             </div>
