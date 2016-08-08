@@ -13,7 +13,7 @@ class ModalStore extends EventEmitter {
         };
     }
 
-    getMovieDialogData() {
+    getAddMovieDialogData() {
         return this.addMovieDialog;
     }
 

@@ -11,7 +11,6 @@ class AddMovieDialog extends Component {
         super();
 
         this._onChange = this._onChange.bind(this);
-        this._handleCancelClick = this._handleCancelClick.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
 
         this.state = {
@@ -20,15 +19,15 @@ class AddMovieDialog extends Component {
     }
 
     _onChange() {
-        this.setState(modalStore.getDialogData());
+        this.setState(modalStore.getAddMovieDialogData());
     }
 
     _handleKeyPress(event) {
         if (this.state.isOpen) {
             if (event.code === 'Escape') {
-                modalActions.cancelDialog();
+                modalActions.closeAddMovieDialog();
             } else if (event.code === 'Enter') {
-                modalActions.confirmDialog();
+                console.log('confirmed with enter');
             }
         }
     }
@@ -43,11 +42,6 @@ class AddMovieDialog extends Component {
     componentWillUnmount() {
         modalStore.removeChangeListener(this._onChange);
         document.removeEventListener('keyup', this._handleKeyPress, false);
-    }
-
-    _handleCancelClick() {
-
-        modalActions.hideAddMovieDialog();
     }
 
     render() {
@@ -66,10 +60,10 @@ class AddMovieDialog extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <div className="confirm-controls">
-                    <span className="btn btn-cancel" onClick={() => this._handleCancelClick()}>
+                    <span className="btn btn-cancel" onClick={() => modalActions.closeAddMovieDialog()}>
                       Bad
                     </span>
-                                        <span className="btn btn-primary" onClick={() => modalActions.confirmDialog()}>
+                                        <span className="btn btn-primary" onClick={() => console.log('good')}>
                       Good
                     </span>
                                     </div>
