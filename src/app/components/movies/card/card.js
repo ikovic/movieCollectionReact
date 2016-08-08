@@ -4,7 +4,6 @@ import './card.scss';
 
 export default class Card extends Component {
     render() {
-        console.dir(this.props);
         return (
             <article className="card" style={{width: this.props.width}}>
                 <img

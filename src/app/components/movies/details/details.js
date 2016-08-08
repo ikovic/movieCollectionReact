@@ -4,7 +4,6 @@ import './details.scss';
 
 export default class Details extends Component {
     render() {
-        console.dir(this.props);
         return (
             <article className="movie-details">
                 <div className="poster-holder">

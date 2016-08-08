@@ -76,6 +76,9 @@ class AddMovieDialog extends Component {
     _onAutocompleteSelect(value) {
         modalActions.closeAutocomplete();
         modalActions.createMovieOrder(value.imdbID);
+        this.setState({
+            imdbTitle: value.Title
+        })
     }
 
     _onInputChange(event) {
