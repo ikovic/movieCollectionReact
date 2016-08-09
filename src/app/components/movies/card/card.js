@@ -3,21 +3,37 @@ import React, {Component} from 'react';
 import './card.scss';
 
 export default class Card extends Component {
+
+    _viewDetails() {
+        console.log('details')
+    }
+
+    _removeMovie(event) {
+        event.stopPropagation();
+        console.log('remove');
+    }
+
+    _truncateTitle(title) {
+        if (title.length > 40) {
+            return title.substring(0, 100) + '...';
+        } else {
+            return title;
+        }
+    }
+
     render() {
         return (
-            <article className="card" style={{width: this.props.width}}>
+            <article className="card" style={{width: this.props.width}} onClick={() => this._viewDetails()}>
                 <img
-                    src="http://ia.media-imdb.com/images/M/MV5BMTU0ODk1MTIxM15BMl5BanBnXkFtZTgwNTk3MTc5ODE@._V1_SX300.jpg"/>
+                    src={this.props.movie.Poster}/>
                 <div className="card-data">
-                    <p className="title">Star Trek</p>
-                    <p className="year">2014.</p>
-                    <p className="rating">IMDb: 7.5/10</p>
+                    {this.props.canEdit ? <span className="remove-button" onClick={(event) => this._removeMovie(event)}>x</span> : null}
+                    <p className="title">{this._truncateTitle(this.props.movie.Title)}</p>
+                    <p className="year">{this.props.movie.Year}</p>
+                    <p className="rating">{this.props.movie.imdbRating}</p>
                 </div>
 
             </article>
         )
     }
 };
-/**
- * Created by Ivan on 4.8.2016..
- */

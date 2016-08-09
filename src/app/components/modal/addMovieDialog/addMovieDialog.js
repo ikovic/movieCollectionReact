@@ -32,11 +32,23 @@ class AddMovieDialog extends Component {
     _onChange() {
         var modalData = modalStore.getAddMovieDialogData();
         var autocomplete = modalStore.getAutocompleteData();
-        this.setState({
-            isOpen: modalData.isOpen,
-            movie: modalData.movie,
-            autocomplete: autocomplete
-        });
+
+        // reset inputs when opening the window
+        if (!this.state.isOpen && modalData.isOpen) {
+            this.setState({
+                isOpen: modalData.isOpen,
+                movie: modalData.movie,
+                autocomplete: autocomplete,
+                imdbId: '',
+                imdbTitle: ''
+            });
+        } else {
+            this.setState({
+                isOpen: modalData.isOpen,
+                movie: modalData.movie,
+                autocomplete: autocomplete
+            });
+        }
     }
 
     _handleKeyPress(event) {
@@ -141,7 +153,8 @@ class AddMovieDialog extends Component {
                                               onClick={() => modalActions.closeAddMovieDialog()}>
                                           Cancel
                                         </span>
-                                        <span className="btn btn-primary" onClick={() => collectionActions.addMovie(this.state.movie)}>
+                                        <span className="btn btn-primary"
+                                              onClick={() => collectionActions.addMovie(this.state.movie)}>
                                           Add
                                         </span>
                                     </div>

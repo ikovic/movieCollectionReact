@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Card from './card/card';
 import collectionStore from '../../stores/collectionStore';
+import sessionStore from '../../stores/sessionStore';
 
 import './movies.scss';
 
@@ -41,10 +42,21 @@ export default class Movies extends Component {
         });
     }
 
+    canRemoveMovie() {
+        var currentCollection = collectionStore.getCurrentCollection();
+        var currentUser = sessionStore.getActiveUser();
+        if (currentCollection && currentUser) {
+            return currentCollection.slug === currentUser.slug;
+        } else {
+            return false;
+        }
+    }
+
     getCards() {
+        var canRemoveMovie = this.canRemoveMovie();
         var cards = [];
         this.state.movies.forEach((movie) => {
-            cards.push(<Card movie={movie} width={this.state.width} key={movie._id}/>);
+            cards.push(<Card canEdit={canRemoveMovie} movie={movie} width={this.state.width} key={movie._id}/>);
         });
         return cards;
     }
@@ -59,11 +71,13 @@ export default class Movies extends Component {
         this.updateDimensions();
         window.addEventListener("resize", this.updateDimensions);
         collectionStore.addChangeListener(this.onChange);
+        sessionStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
         collectionStore.removeChangeListener(this.onChange);
+        sessionStore.removeChangeListener(this.onChange);
     }
 
     getMessageForNoMovies() {

@@ -30,6 +30,18 @@
     top: 50%;
     transform: translate(-50%, -50%);
 
+    .remove-button {
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      color: black;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     .title {
       position: absolute;
       left: 50%;
@@ -40,14 +52,14 @@
     .year {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 65%;
       transform: translate(-50%, -50%);
     }
 
     .rating {
       position: absolute;
       left: 50%;
-      top: 75%;
+      top: 80%;
       transform: translate(-50%, -50%);
     }
   }
