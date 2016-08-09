@@ -51,8 +51,7 @@ class MovieDetails extends Component {
         if (this.state.isOpen) {
             return (
                 <div id="movieDetailsWrapper">
-                    <div id="overlayModalDetails" onClick={() => modalActions.hideMovieDetails()}
-                         className={this.state.isOpen ? 'visible' : ''}></div>
+                    <div id="overlayModalDetails" className={this.state.isOpen ? 'visible' : ''}></div>
                     <div className="modal">
                         <div className="modal-dialog">
                             <div className="modal-content">
