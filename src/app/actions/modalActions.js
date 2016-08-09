@@ -53,6 +53,20 @@ class ModalActions {
             data: null
         });
     }
+
+    showMovieDetails(movie) {
+        appDispatcher.handleAction({
+            actionType: modalConstants.SHOW_MOVIE_DETAILS,
+            data: movie
+        });
+    }
+
+    hideMovieDetails() {
+        appDispatcher.handleAction({
+            actionType: modalConstants.HIDE_MOVIE_DETAILS,
+            data: null
+        });
+    }
 }
 
 var modalActions = new ModalActions();

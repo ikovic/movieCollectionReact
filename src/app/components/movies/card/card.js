@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import collectionActions from '../../../actions/collectionActions';
+import modalActions from '../../../actions/modalActions';
 
 import './card.scss';
 
 export default class Card extends Component {
 
     _viewDetails() {
-        console.log('details')
+        modalActions.showMovieDetails(this.props.movie);
     }
 
     _removeMovie(event) {

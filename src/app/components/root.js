@@ -3,6 +3,7 @@ import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import Movies from './movies/movies';
 import AddMovieDialog from './modal/addMovieDialog/addMovieDialog';
+import MovieDetails from './modal/movieDetails/movieDetails';
 
 import collectionActions from '../actions/collectionActions';
 
@@ -22,6 +23,7 @@ export default class Root extends Component {
                 <Sidebar />
                 <Movies />
                 <AddMovieDialog />
+                <MovieDetails />
             </div>
         )
     }

@@ -14,10 +14,33 @@ class ModalStore extends EventEmitter {
             isOpen: false,
             movie: null
         };
+
+        this.movieDetailsModal = {
+            isOpen: false,
+            movie: null
+        }
     }
 
     getAddMovieDialogData() {
         return this.addMovieDialog;
+    }
+
+    getMovieDetailsModalData() {
+        return this.movieDetailsModal;
+    }
+
+    showMovieDetailsDialog(movie) {
+        this.movieDetailsModal = {
+            isOpen: true,
+            movie: movie
+        };
+    }
+
+    hideMovieDetailsDialog() {
+        this.movieDetailsModal = {
+            isOpen: false,
+            movie: null
+        }
     }
 
     showAddMovieDialog() {
@@ -102,6 +125,16 @@ appDispatcher.register(function (payload) {
 
         case modalConstants.CLOSE_AUTOCOMPLETE: {
             modalStore.setAutocompleteData([]);
+            break;
+        }
+
+        case modalConstants.SHOW_MOVIE_DETAILS: {
+            modalStore.showMovieDetailsDialog(action.data);
+            break;
+        }
+
+        case modalConstants.HIDE_MOVIE_DETAILS: {
+            modalStore.hideMovieDetailsDialog();
             break;
         }
 
