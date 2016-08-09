@@ -34,7 +34,7 @@ export default class Movies extends Component {
             numberOfCardsInRow = 2;
         }
 
-        var cardWidth = (containerWidth / numberOfCardsInRow) - 2;
+        var cardWidth = (containerWidth / numberOfCardsInRow) - 4;
 
         this.setState({
             width: cardWidth
@@ -43,7 +43,6 @@ export default class Movies extends Component {
 
     getCards() {
         var cards = [];
-        console.dir(this.state.movies);
         this.state.movies.forEach((movie) => {
             cards.push(<Card movie={movie} width={this.state.width} key={movie._id}/>);
         });

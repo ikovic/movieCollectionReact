@@ -40,8 +40,9 @@ class CollectionStore extends EventEmitter {
         this.movies = data.movies;
     }
 
-    addMovieToCollection() {
-        this.currentCollection = data;
+    addMovieToCollection(data) {
+        this.currentCollection = data.collection;
+        this.movies.push(data.movie);
     }
 
     // Emit Change event
