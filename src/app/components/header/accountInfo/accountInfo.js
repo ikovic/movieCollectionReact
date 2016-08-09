@@ -41,7 +41,7 @@ export default class AccountInfo extends Component {
         return (
             <div id="accountInfo">
                 { showAddButton ? <button onClick={() => modalActions.openAddMovieDialog()}
-                                          className="add-movie">Add
+                                          className="btn add-movie">Add
                     Movie</button> : null}
                 <h3 className="username">{this.props.user.google.name}</h3>
                 <span className="sign-out" onClick={() => sessionActions.signOutUser()}>Sign out</span>

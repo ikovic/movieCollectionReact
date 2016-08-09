@@ -42,7 +42,7 @@ export default class Header extends Component {
                         <GoogleLogin
                             clientId="103058587609-srk6qkhe6hegud2a23g4n29d34hj07fi.apps.googleusercontent.com"
                             buttonText="Sign in With Google"
-                            cssClass="google-sign-in default"
+                            cssClass="btn google-sign-in"
                             callback={(googleUser) => sessionActions.signInUser(googleUser)}
                         />
                     }
