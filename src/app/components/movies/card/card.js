@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import collectionActions from '../../../actions/collectionActions';
 
 import './card.scss';
 
@@ -10,7 +11,7 @@ export default class Card extends Component {
 
     _removeMovie(event) {
         event.stopPropagation();
-        console.log('remove');
+        collectionActions.removeMovie(this.props.movie);
     }
 
     _truncateTitle(title) {

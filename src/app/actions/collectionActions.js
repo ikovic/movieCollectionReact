@@ -84,6 +84,32 @@ class CollectionActions {
             ajax.put(currentCollection);
         }
     }
+
+    removeMovie(movie) {
+        if (movie) {
+            let currentCollection = collectionStore.getCurrentCollection();
+            console.log('before', currentCollection.movieIds);
+            let movieIndex = currentCollection.movieIds.indexOf(movie._id);
+            currentCollection.movieIds.splice(movieIndex, 1);
+            console.log('after', currentCollection.movieIds);
+
+            let ajax = new Ajax('api/collection/' + currentCollection.slug,
+                (res) => {
+                    appDispatcher.handleAction({
+                        actionType: collectionConstants.REMOVE_MOVIE,
+                        data: {
+                            collection: currentCollection,
+                            movie: movie
+                        }
+                    });
+                },
+                (status, res) => {
+                    console.dir(res);
+                }
+            );
+            ajax.put(currentCollection);
+        }
+    }
 }
 
 var collectionActions = new CollectionActions();
