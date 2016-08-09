@@ -3,23 +3,24 @@
   height: 400px;
   min-width: 840px;
   text-align: left;
+  padding: 30px 10px;
 
   .poster-holder {
     position: absolute;
-    left: 0;
-    width: 268px;
+    left: 10px;
+    width: 278px;
+
     img {
       height: 100%;
       width: 100%;
+      border-radius: 4px;
     }
   }
 
   .data-holder {
     position: absolute;
-    right: 5px;
-    left: 268px;
+    left: 298px;
     padding: 0 5px;
-    width: calc(100% - 268px);
 
     div {
       margin: 10px 0;

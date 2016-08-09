@@ -128,7 +128,10 @@ class AddMovieDialog extends Component {
                                     <span className="title">Add a Movie</span>
                                 </div>
                                 <div className="modal-body">
-                                    <span>
+                                    <span className="legend-wrapper">
+                                        <p>Add a movie by entering its title or IMDb ID</p>
+                                    </span>
+                                    <span className="title-wrapper">
                                         <label htmlFor="imdbTitle">Title</label>
                                         <input type="text" value={this.state.imdbTitle} id="imdbTitle"
                                                onChange={(event) => this._onInputChange(event)}/>
@@ -141,9 +144,11 @@ class AddMovieDialog extends Component {
                                         }
                                     </span>
 
-                                    <label htmlFor="imdbId">IMDb ID</label>
-                                    <input type="text" value={this.state.imdbId} id="imdbId"
-                                           onChange={(event) => this._onInputChange(event)}/>
+                                    <span className="imdbid-wrapper">
+                                        <label htmlFor="imdbId">IMDb ID</label>
+                                        <input type="text" value={this.state.imdbId} id="imdbId"
+                                               onChange={(event) => this._onInputChange(event)}/>
+                                    </span>
 
                                     {this.state.movie ? <Details movie={this.state.movie}/> : null}
                                 </div>
@@ -163,11 +168,11 @@ class AddMovieDialog extends Component {
                         </div>
                     </div>
                 </div>
-
             )
         } else {
             return null;
         }
+
     }
 }
 
