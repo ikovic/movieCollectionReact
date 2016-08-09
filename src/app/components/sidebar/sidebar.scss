@@ -1,20 +1,55 @@
 #sidebar {
   position: fixed;
+  top: 110px;
   left: -220px;
-  top: 80px;
-  height: calc(100% - 80px);
-  width: 230px;
   z-index: 6;
+  height: calc(100% - 110px);
+  width: 230px;
+  color: #fff;
   background-color: #18191C;
-  color: white;
   padding: 10px;
+  -webkit-transition: left 300ms ease;
+  -moz-transition: left 300ms ease;
+  -ms-transition: left 300ms ease;
+  -o-transition: left 300ms ease;
+  transition: left 300ms ease;
 
   &:hover {
     left: 0;
+
+    .selected-collection {
+      left: 0 !important;
+    }
   }
 
   h4 {
     text-transform: uppercase;
+  }
+
+  .selected-collection {
+    position: fixed;
+    text-align: right;
+    padding: 0 10px;
+    left: 0;
+    top: 80px;
+    width: 230px;
+    height: 30px;
+    background-color: cornflowerblue;
+
+    &.empty {
+      left: -220px;
+      background-color: #18191C;
+      -webkit-transition: left 300ms ease;
+      -moz-transition: left 300ms ease;
+      -ms-transition: left 300ms ease;
+      -o-transition: left 300ms ease;
+      transition: left 300ms ease;
+    }
+
+    span {
+      position: relative;
+      top: 5px;
+    }
   }
 
   ul {

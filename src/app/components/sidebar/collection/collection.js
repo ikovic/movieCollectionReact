@@ -17,8 +17,7 @@ export default class Collection extends Component {
     render() {
         if (this.props.collection) {
             return (
-                <li className={this.props.isSelected ? 'selected' : ''}
-                    onClick={() => this.selectCollection()}
+                <li onClick={() => this.selectCollection()}
                 >{this.props.collection.google.name}</li>);
         } else {
             return null;

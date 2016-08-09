@@ -22,7 +22,6 @@ export default class Movies extends Component {
 
     updateDimensions() {
         var containerWidth = this.refs.cardsContainer.offsetWidth;
-        console.log(containerWidth);
         var numberOfCardsInRow = 1;
         if (containerWidth > 1400) {
             numberOfCardsInRow = 12;

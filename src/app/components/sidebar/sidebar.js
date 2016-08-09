@@ -41,7 +41,7 @@ export default class Sidebar extends Component {
         for (let collection of this.state.collections) {
             collections.push(<Collection collection={collection}
                                          key={collection._id}
-                                         isSelected={this.state.currentCollection && collection._id === this.state.currentCollection._id}/>)
+            />)
         }
         return collections;
     }
@@ -49,6 +49,12 @@ export default class Sidebar extends Component {
     render() {
         return (
             <aside id="sidebar">
+                <div className={"selected-collection " + (this.state.currentCollection ? '' : 'empty')}>
+                    {this.state.currentCollection ?
+                        <span>{this.state.currentCollection.google.name}</span>
+                        :
+                        null}
+                </div>
                 <Search />
                 <ul>
                     {this.getCollections()}
