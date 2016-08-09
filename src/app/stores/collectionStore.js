@@ -57,6 +57,10 @@ class CollectionStore extends EventEmitter {
         }
     }
 
+    displaySearchResults(data) {
+        this.collections = data;
+    }
+
     // Emit Change event
     emitChange() {
         this.emit('change');
@@ -104,6 +108,10 @@ appDispatcher.register(function (payload) {
             break;
         }
 
+        case collectionConstants.SEARCH_COLLECTIONS: {
+            collectionStore.displaySearchResults(action.data);
+            break;
+        }
         default: {
             return true;
         }

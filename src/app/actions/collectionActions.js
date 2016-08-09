@@ -110,6 +110,21 @@ class CollectionActions {
             ajax.put(currentCollection);
         }
     }
+
+    searchCollections(title) {
+        var ajax = new Ajax('/api/collection?title=' + title,
+            (res) => {
+                appDispatcher.handleAction({
+                    actionType: collectionConstants.SEARCH_COLLECTIONS,
+                    data: res
+                });
+            },
+            (status, res) => {
+                console.dir(res);
+            }
+        );
+        ajax.get();
+    }
 }
 
 var collectionActions = new CollectionActions();

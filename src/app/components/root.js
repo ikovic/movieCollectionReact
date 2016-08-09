@@ -13,7 +13,7 @@ export default class Root extends Component {
 
     componentDidMount() {
         // initialize app data
-        collectionActions.loadCollections();
+        //collectionActions.loadCollections();
     }
 
     render() {

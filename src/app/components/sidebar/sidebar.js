@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import collectionStore from '../../stores/collectionStore';
 import Collection from './collection/collection';
+import Search from './search/search';
 
 import './sidebar.scss';
 
@@ -48,6 +49,7 @@ export default class Sidebar extends Component {
     render() {
         return (
             <aside id="sidebar">
+                <Search />
                 <ul>
                     {this.getCollections()}
                 </ul>
