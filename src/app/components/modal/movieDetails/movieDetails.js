@@ -58,13 +58,11 @@ class MovieDetails extends Component {
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <span className="title">Movie Details</span>
-                                    <span className="close-modal">x</span>
+                                    <span className="close-modal"
+                                          onClick={() => modalActions.hideMovieDetails()}>x</span>
                                 </div>
                                 <div className="modal-body">
                                     <Details movie={this.state.movie}/>
-                                </div>
-                                <div className="modal-footer">
-
                                 </div>
                             </div>
                         </div>
