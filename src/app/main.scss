@@ -14,3 +14,9 @@ p {
 .hidden {
   display: none;
 }
+
+// Fixes Firefox issue displaying overflow due to iframe's frameborder
+iframe#ssIFrame_google {
+  border: 0;
+  height: 0 !important;
+}
