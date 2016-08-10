@@ -20,10 +20,12 @@ class ModalActions {
     createMovieOrder(imdbId) {
         var ajax = new Ajax('/api/movieOrder',
             (res) => {
-                appDispatcher.handleAction({
-                    actionType: modalConstants.SHOW_ORDER_DETAILS,
-                    data: res
-                });
+                if (!res.error) {
+                    appDispatcher.handleAction({
+                        actionType: modalConstants.SHOW_ORDER_DETAILS,
+                        data: res
+                    });
+                }
             },
             (status, res) => {
                 console.dir(res);

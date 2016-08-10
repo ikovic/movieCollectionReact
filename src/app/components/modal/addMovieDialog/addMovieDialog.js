@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import modalStore from '../../../stores/modalStore';
 import modalActions from '../../../actions/modalActions';
 import collectionActions from '../../../actions/collectionActions';
+import collectionStore from '../../../stores/collectionStore';
 
 import Details from '../../movies/details/details';
 
@@ -116,6 +117,16 @@ class AddMovieDialog extends Component {
         }
     }
 
+    _canMovieBeAdded(movie, movies) {
+        if (movie) {
+            return !movies.find((m) => {
+                return m._id === movie._id;
+            });
+        } else {
+            return false;
+        }
+    }
+
     render() {
         if (this.state.isOpen) {
             return (
@@ -157,8 +168,9 @@ class AddMovieDialog extends Component {
                                 <div className="modal-footer">
                                     <div className="confirm-controls">
 
-                                        <span className={"btn btn-primary " + (this.state.movie ? '' : 'hidden')}
-                                              onClick={() => collectionActions.addMovie(this.state.movie)}>
+                                        <span
+                                            className={"btn btn-primary " + (this._canMovieBeAdded(this.state.movie, collectionStore.getMovies()) ? '' : 'hidden')}
+                                            onClick={() => collectionActions.addMovie(this.state.movie)}>
                                           Add
                                         </span>
                                     </div>
