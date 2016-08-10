@@ -24,6 +24,16 @@ export default class Header extends Component {
 
     componentDidMount() {
         sessionStore.addChangeListener(this.onChange);
+
+        gapi.signin2.render('g-signin2', {
+            'scope': 'https://www.googleapis.com/auth/plus.profile.emails.read',
+            'width': 150,
+            'height': 40,
+            'longtitle': false,
+            'theme': 'dark',
+            'onsuccess': sessionActions.signInUser
+        });
+
     }
 
     componentWillUnmount() {
@@ -40,13 +50,8 @@ export default class Header extends Component {
                         <AccountInfo user={this.state.user}/>
                         :
                         null}
-                    <GoogleLogin
-                        clientId="103058587609-srk6qkhe6hegud2a23g4n29d34hj07fi.apps.googleusercontent.com"
-                        buttonText="Sign in With Google"
-                        cssClass={"btn google-sign-in " + (this.state.user ? 'hidden' : '')}
-                        scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"
-                        callback={(googleUser) => sessionActions.signInUser(googleUser)}
-                    />
+                    <div id="g-signin2" className={"google-sign-in " + (this.state.user ? 'hidden' : '')}
+                         data-onsuccess="onSignIn" data-onload="true"></div>
                 </div>
             </header>
         )
