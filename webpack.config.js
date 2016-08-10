@@ -35,7 +35,19 @@ var config = {
             {test: /\.(ttf|eot|jpg|svg)(\?v=[0-9]\.[0-9]\.[0-9])?(\?\d+)?$/, loader: "file-loader"},
             {test: /\.png$/, loader: "url-loader?limit=100000"},
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: true
+            }
+        })
+    ]
 };
 
 module.exports = config;
