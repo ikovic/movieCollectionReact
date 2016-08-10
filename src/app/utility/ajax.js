@@ -1,9 +1,12 @@
 class Ajax {
 
-    constructor(url, success, error, access_token = null) {
-        this.url = url;
+    constructor(url, success, error, useTimestamp = false) {
+        if (useTimestamp) {
+            this.url = url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime();
+        } else {
+            this.url = url;
+        }
         this.error = error;
-        this.access_token = access_token;
 
         this.xhr = new XMLHttpRequest();
         this.xhr.withCredentials = true;
@@ -75,9 +78,6 @@ class Ajax {
         // IE11 bug workaround
         this.xhr.timeout = 20000; // 20 sec
         this.xhr.ontimeout = (() => this.error(598, {message: "Server timed out"}));
-        if (this.access_token) {
-            this.xhr.setRequestHeader('Authorization', 'BEARER ' + this.access_token);
-        }
         this.xhr.setRequestHeader('Accept', 'application/json');
         this.xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }

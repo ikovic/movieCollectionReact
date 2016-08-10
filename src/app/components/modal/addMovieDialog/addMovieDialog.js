@@ -126,6 +126,8 @@ class AddMovieDialog extends Component {
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <span className="title">Add a Movie</span>
+                                    <span className="close-modal"
+                                          onClick={() => modalActions.closeAddMovieDialog()}>x</span>
                                 </div>
                                 <div className="modal-body">
                                     <span className="legend-wrapper">
@@ -154,11 +156,8 @@ class AddMovieDialog extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <div className="confirm-controls">
-                                        <span className="btn btn-cancel"
-                                              onClick={() => modalActions.closeAddMovieDialog()}>
-                                          Cancel
-                                        </span>
-                                        <span className="btn btn-primary"
+
+                                        <span className={"btn btn-primary " + (this.state.movie ? '' : 'hidden')}
                                               onClick={() => collectionActions.addMovie(this.state.movie)}>
                                           Add
                                         </span>

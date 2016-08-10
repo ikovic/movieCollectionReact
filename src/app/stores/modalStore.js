@@ -54,7 +54,8 @@ class ModalStore extends EventEmitter {
         this.addMovieDialog = {
             isOpen: false,
             movie: null
-        }
+        };
+        this.autocomplete = [];
     }
 
     showOrderDetails(movie) {
