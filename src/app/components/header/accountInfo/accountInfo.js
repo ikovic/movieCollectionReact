@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import sessionActions from '../../../actions/sessionActions';
 import sessionStore from '../../../stores/sessionStore';
 import collectionStore from '../../../stores/collectionStore';
+import collectionActions from '../../../actions/collectionActions';
 import modalActions from '../../../actions/modalActions';
 
 import './accountInfo.scss';
 
 export default class AccountInfo extends Component {
-
 
     constructor() {
         super();
@@ -43,7 +43,8 @@ export default class AccountInfo extends Component {
                 { showAddButton ? <button onClick={() => modalActions.openAddMovieDialog()}
                                           className="btn add-movie">Add
                     Movie</button> : null}
-                <h3 className="username">{this.props.user.google.name}</h3>
+                <h3 className="username"
+                    onClick={() => collectionActions.selectCollection(sessionStore.getActiveUser())}>{this.props.user.google.name}</h3>
                 <span className="sign-out" onClick={() => sessionActions.signOutUser()}>Sign out</span>
             </div>)
     }

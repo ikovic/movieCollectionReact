@@ -5,6 +5,10 @@
   h3.username {
     color: white;
     margin: 5px 0;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .sign-out {

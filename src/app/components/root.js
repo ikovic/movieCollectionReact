@@ -10,16 +10,6 @@ import collectionActions from '../actions/collectionActions';
 import './root.scss';
 
 export default class Root extends Component {
-
-    componentDidMount() {
-        // initialize google platform js
-        if (!gapi.auth2) {
-            gapi.load('auth2', function () {
-                gapi.auth2.init();
-            });
-        }
-    }
-
     render() {
         return (
             <div id="root">

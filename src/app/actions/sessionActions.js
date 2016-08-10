@@ -16,7 +16,7 @@ class SessionActions {
                         user: res
                     }
                 });
-                if(!collectionStore.currentCollection) {
+                if (!collectionStore.currentCollection) {
                     collectionActions.selectCollection(res);
                 }
             },
