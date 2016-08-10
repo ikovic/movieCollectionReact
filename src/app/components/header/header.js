@@ -14,7 +14,7 @@ export default class Header extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            user: null
+            user: sessionStore.getActiveUser()
         };
     }
 

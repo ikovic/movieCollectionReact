@@ -8,19 +8,25 @@ class SessionStore extends EventEmitter {
     constructor() {
         super();
 
-        this.user = null;
+        this.user = this.getSessionData();
     }
 
     getActiveUser() {
         return this.user;
     }
 
+    getSessionData() {
+        return JSON.parse(sessionStorage.getItem('sessionData'));
+    }
+
     signInUser(data) {
         this.user = data.user;
+        sessionStorage.setItem('sessionData', JSON.stringify(this.user));
     }
 
     signOutUser() {
         this.user = null;
+        sessionStorage.removeItem('sessionData');
     }
 
     // Emit Change event

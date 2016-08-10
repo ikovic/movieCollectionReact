@@ -12,8 +12,10 @@ import './root.scss';
 export default class Root extends Component {
 
     componentDidMount() {
-        // initialize app data
-        //collectionActions.loadCollections();
+        // initialize google platform js
+        gapi.load('auth2', function () {
+            gapi.auth2.init();
+        });
     }
 
     render() {
