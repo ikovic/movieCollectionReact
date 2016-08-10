@@ -1,5 +1,7 @@
 import appDispatcher from '../dispatcher/appDispatcher';
 import sessionConstants from '../constants/sessionConstants';
+import collectionStore from '../stores/collectionStore';
+import collectionActions from '../actions/collectionActions';
 import Ajax from '../utility/ajax';
 
 class SessionActions {
@@ -14,6 +16,9 @@ class SessionActions {
                         user: res
                     }
                 });
+                if(!collectionStore.currentCollection) {
+                    collectionActions.selectCollection(res);
+                }
             },
             (status, res) => console.dir(res)
         );
