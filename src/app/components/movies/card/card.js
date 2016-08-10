@@ -25,8 +25,9 @@ export default class Card extends Component {
     }
 
     _truncateTitle(title) {
+        console.log(title);
         if (title && title.length > 40) {
-            return title.substring(0, 100) + '...';
+            return title.substring(0, 40) + '...';
         } else {
             return title;
         }
