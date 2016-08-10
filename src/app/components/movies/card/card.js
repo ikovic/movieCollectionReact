@@ -6,6 +6,15 @@ import './card.scss';
 
 export default class Card extends Component {
 
+    constructor() {
+        super();
+
+        this._hasPoster = this._hasPoster.bind(this);
+
+        var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+        this.urlRegex = new RegExp(expression);
+    }
+
     _viewDetails() {
         modalActions.showMovieDetails(this.props.movie);
     }
@@ -23,11 +32,15 @@ export default class Card extends Component {
         }
     }
 
+    _hasPoster(url) {
+        return this.urlRegex.test(url);
+    }
+
     render() {
         return (
             <article className="card" style={{width: this.props.width}} onClick={() => this._viewDetails()}>
                 <img
-                    src={this.props.movie.Poster}/>
+                    src={this._hasPoster(this.props.movie.Poster) ? this.props.movie.Poster : require('../../../../../public/images/imdb.jpg')}/>
                 <div className="card-data">
                     {this.props.canEdit ? <span className="remove-button" onClick={(event) => this._removeMovie(event)}>x</span> : null}
                     <p className="title">{this._truncateTitle(this.props.movie.Title)}</p>

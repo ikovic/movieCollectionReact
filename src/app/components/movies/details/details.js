@@ -3,11 +3,26 @@ import React, {Component} from 'react';
 import './details.scss';
 
 export default class Details extends Component {
+
+    constructor() {
+        super();
+
+        this._hasPoster = this._hasPoster.bind(this);
+
+        var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+        this.urlRegex = new RegExp(expression);
+    }
+
+    _hasPoster(url) {
+        return this.urlRegex.test(url);
+    }
+
     render() {
         return (
             <article className="movie-details">
                 <div className="poster-holder">
-                    <img src={this.props.movie.Poster}/>
+                    <img
+                        src={this._hasPoster(this.props.movie.Poster) ? this.props.movie.Poster : require('../../../../../public/images/imdb.jpg')}/>
                 </div>
                 <div className="data-holder">
                     <div>
