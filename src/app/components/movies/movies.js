@@ -84,7 +84,7 @@ export default class Movies extends Component {
 
     getMessageForNoMovies() {
         if (collectionStore.getCurrentCollection()) {
-            if (!this.state.movies.length) {
+            if (!this.state.movies || !this.state.movies.length) {
                 return 'No movies in this collection';
             }
         } else {

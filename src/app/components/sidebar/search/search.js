@@ -25,7 +25,7 @@ export default class Search extends Component {
     }
 
     _searchCollections(value) {
-        if (value.length) {
+        if (value && value.length) {
             collectionActions.searchCollections(value);
         }
     }
