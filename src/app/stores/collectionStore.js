@@ -14,13 +14,7 @@ class CollectionStore extends EventEmitter {
     }
 
     getCurrentCollection() {
-        if (this.currentCollection) {
-            return this.collections.find((item) => {
-                return item._id == this.currentCollection._id
-            });
-        } else {
-            return null;
-        }
+        return this.currentCollection;
     }
 
     getCollections() {
