@@ -13,9 +13,11 @@ export default class Root extends Component {
 
     componentDidMount() {
         // initialize google platform js
-        gapi.load('auth2', function () {
-            gapi.auth2.init();
-        });
+        if (!gapi.auth2) {
+            gapi.load('auth2', function () {
+                gapi.auth2.init();
+            });
+        }
     }
 
     render() {
