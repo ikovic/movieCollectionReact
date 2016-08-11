@@ -21,8 +21,13 @@
 
     .add-movie {
       position: absolute;
-      top: 20px;
+      top: 18px;
       right: 300px;
+      height: 45px;
+      width: 100px;
+      background-color: #6495ed;
+      border-color: #6495ed;
+      color: white;
 
       &:hover {
         cursor: pointer;
