@@ -64,14 +64,12 @@ class AddMovieDialog extends Component {
         }
     }
 
-    //  subscribe na store change event
     componentDidMount() {
         modalStore.addChangeListener(this._onChange);
         document.addEventListener('click', this._hideAutocompleteOnClick, false);
         document.addEventListener('keyup', this._handleKeyPress, false);
     }
 
-    // Unbind change listener
     componentWillUnmount() {
         modalStore.removeChangeListener(this._onChange);
         document.removeEventListener('click', this._hideAutocompleteOnClick, false);
