@@ -4,17 +4,8 @@ import './details.scss';
 
 export default class Details extends Component {
 
-    constructor() {
-        super();
-
-        this._hasPoster = this._hasPoster.bind(this);
-
-        var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-        this.urlRegex = new RegExp(expression);
-    }
-
     _hasPoster(url) {
-        return this.urlRegex.test(url);
+        return (url.length > 5);
     }
 
     render() {
@@ -22,7 +13,7 @@ export default class Details extends Component {
             <article className="movie-details">
                 <div className="poster-holder">
                     <img
-                        src={this._hasPoster(this.props.movie.Poster) ? this.props.movie.Poster : require('../../../../../public/images/imdb.jpg')}/>
+                        src={this._hasPoster(this.props.movie.Poster) ? this.props.movie.Poster : "http://filmmakerseo.com/imdb/imdb11.jpg"}/>
                 </div>
                 <div className="data-holder">
                     <div>

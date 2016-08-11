@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
 import modalStore from '../../../stores/modalStore';
 import modalActions from '../../../actions/modalActions';
@@ -18,6 +19,7 @@ class AddMovieDialog extends Component {
         this._onInputChange = this._onInputChange.bind(this);
         this._getAutocompleteValues = this._getAutocompleteValues.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
+        this._hideAutocompleteOnClick = this._hideAutocompleteOnClick.bind(this);
 
         this.state = {
             isOpen: false,
@@ -65,12 +67,14 @@ class AddMovieDialog extends Component {
     //  subscribe na store change event
     componentDidMount() {
         modalStore.addChangeListener(this._onChange);
+        document.addEventListener('click', this._hideAutocompleteOnClick, false);
         document.addEventListener('keyup', this._handleKeyPress, false);
     }
 
     // Unbind change listener
     componentWillUnmount() {
         modalStore.removeChangeListener(this._onChange);
+        document.removeEventListener('click', this._hideAutocompleteOnClick, false);
         document.removeEventListener('keyup', this._handleKeyPress, false);
         if (this.autocompleteTimeout) {
             clearTimeout(this.autocompleteTimeout);
@@ -127,6 +131,15 @@ class AddMovieDialog extends Component {
         }
     }
 
+    _hideAutocompleteOnClick(evt) {
+        var autocomplete = ReactDOM.findDOMNode(this.refs.autocomplete);
+        if (autocomplete && !autocomplete.contains(evt.target)) {
+            if (this.state.autocomplete.length) {
+                modalActions.closeAutocomplete();
+            }
+        }
+    }
+
     render() {
         if (this.state.isOpen) {
             return (
@@ -144,7 +157,7 @@ class AddMovieDialog extends Component {
                                     <span className="legend-wrapper">
                                         <p>Add a movie by entering its title or IMDb ID</p>
                                     </span>
-                                    <span className="title-wrapper">
+                                    <span ref="autocomplete" className="title-wrapper">
                                         <label htmlFor="imdbTitle">Title</label>
                                         <input type="text" value={this.state.imdbTitle} id="imdbTitle"
                                                onChange={(event) => this._onInputChange(event)}/>
