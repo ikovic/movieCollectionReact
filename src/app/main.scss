@@ -38,6 +38,14 @@ p {
   background-color: #fff;
   border-color: #ccc;
   min-width: 55px;
+
+  &.btn-main {
+    background-color: #18191c;
+    color: white;
+    font-size: 16px;
+    padding: 6px 12px;
+    min-width: 70px;
+  }
 }
 
 // Fixes Firefox issue displaying overflow due to iframe's frameborder

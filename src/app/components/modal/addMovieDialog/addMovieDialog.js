@@ -180,7 +180,7 @@ class AddMovieDialog extends Component {
                                     <div className="confirm-controls">
 
                                         <span
-                                            className={"btn btn-primary " + (this._canMovieBeAdded(this.state.movie, collectionStore.getMovies()) ? '' : 'hidden')}
+                                            className={"btn btn-main " + (this._canMovieBeAdded(this.state.movie, collectionStore.getMovies()) ? '' : 'hidden')}
                                             onClick={() => collectionActions.addMovie(this.state.movie)}>
                                           Add
                                         </span>
